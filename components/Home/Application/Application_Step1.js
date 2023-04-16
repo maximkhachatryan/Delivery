@@ -1,26 +1,5 @@
 import React from "react";
-import {
-    Text,
-    Link,
-    HStack,
-    Center,
-    Heading,
-    Stack,
-    Switch,
-    useColorMode,
-    NativeBaseProvider,
-    extendTheme,
-    VStack,
-    FormControl,
-    Box,
-    Button,
-    Input,
-    Select,
-    CheckIcon,
-    WarningOutlineIcon,
-    Radio,
-    Checkbox
-} from "native-base";
+import { Text, HStack, Stack, Switch, FormControl, Box, Input, Select, CheckIcon, Radio, } from "native-base";
 import { TimePickerInput } from "../../TimePicker";
 
 
