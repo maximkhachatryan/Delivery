@@ -20,6 +20,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomePage from "./components/Home/HomePage";
 import NativeBasePage from "./components/Home/NativeBasePage";
+import Application_Step1 from "./components/Home/Application/Application_Step1";
 import { enableScreens } from "react-native-screens";
 
 enableScreens();
@@ -44,6 +45,7 @@ export default function App() {
         <Stack.Navigator initialRouteName="NativeBase">
           <Stack.Screen name="NativeBase" component={NativeBasePage} />
           <Stack.Screen name="Home" component={HomePage} />
+          <Stack.Screen name="ApplicationStep1" component={Application_Step1} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
