@@ -18,13 +18,15 @@ const HomePage = ({ navigation }) => {
   return (
     <Center
       _dark={{ bg: "blueGray.900" }}
-      _light={{ bg: "blueGray.50"}}
+      _light={{ bg: "blueGray.50" }}
       px={4}
       flex={1}
     >
-      <VStack space={5} alignItems="center">
+      <VStack space={5} >
         <Button onPress={() => navigation.navigate('ApplicationStep1')}>Նոր առաքման հայտ</Button>
         <Button onPress={() => navigation.navigate('NativeBase')}>Բոլոր առաքման պատվերները</Button>
+        <Button variant='subtle' colorScheme={'secondary'}
+          onPress={() => navigation.navigate('Settings')}>Կարգավորումներ</Button>
       </VStack>
     </Center>
   );

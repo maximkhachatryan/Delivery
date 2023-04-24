@@ -1,6 +1,6 @@
 import React from "react";
-import { Text, HStack, Stack, Switch, FormControl, Box, Input, Select, CheckIcon, Radio, } from "native-base";
-import { TimePickerInput } from "../../TimePicker";
+import { Text, HStack, Stack, Switch, FormControl, Box, Input, Select, CheckIcon, Radio, Heading, } from "native-base";
+import { TimePickerInput } from "../TimePicker";
 
 
 const Application_Step1 = () => {
@@ -9,7 +9,8 @@ const Application_Step1 = () => {
 
 
     return (
-        <Box alignItems="center">
+        <Box alignItems="center" safeArea>
+            <Heading my="30px">Նոր առաքման հայտ</Heading>
             <Box w="90%">
                 <FormControl isRequired>
                     <Stack mx="0">
