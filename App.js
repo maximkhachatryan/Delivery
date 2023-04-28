@@ -23,6 +23,7 @@ import NativeBasePage from "./components/Home/NativeBasePage";
 import Application_Step1 from "./components/Application/Application_Step1";
 import { LoginPage } from "./components/LoginPage"; 
 import { enableScreens } from "react-native-screens";
+import SettingsPage from "./components/Home/SettingsPage";
 
 enableScreens();
 
@@ -43,12 +44,13 @@ export default function App() {
     <NativeBaseProvider>
 
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="LoginPage" screenOptions={{
+        <Stack.Navigator initialRouteName="Home" screenOptions={{
           headerShown: false
         }}>
-          <Stack.Screen name="LoginPage" component={LoginPage} />
+          <Stack.Screen name="Login" component={LoginPage} />
           <Stack.Screen name="NativeBase" component={NativeBasePage} />
           <Stack.Screen name="Home" component={HomePage} />
+          <Stack.Screen name="Settings" component={SettingsPage} />
           <Stack.Screen name="ApplicationStep1" component={Application_Step1} />
         </Stack.Navigator>
       </NavigationContainer>

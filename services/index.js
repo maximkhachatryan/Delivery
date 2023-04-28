@@ -6,7 +6,6 @@ export const login = async (userName, passwordHash) => {
     PasswordHash: passwordHash //"9663353191d4fb084e2f1bae7ac232b891482f0087d34ea9a58bfdbbdf6e0b4e"
   })
     .then(function (response) {
-      alert(JSON.stringify(response));
       return true;
     })
     .catch(function (error) {
