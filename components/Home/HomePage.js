@@ -14,7 +14,9 @@ import {
   Button
 } from "native-base";
 
-const HomePage = ({ navigation }) => {
+const HomePage = ({ route, navigation }) => {
+  const { venderId } = route.params;
+
   return (
     <Center
       _dark={{ bg: "blueGray.900" }}
@@ -26,7 +28,9 @@ const HomePage = ({ navigation }) => {
         <Button onPress={() => navigation.navigate('ApplicationStep1')}>Նոր առաքման հայտ</Button>
         <Button onPress={() => navigation.navigate('NativeBase')}>Բոլոր առաքման պատվերները</Button>
         <Button variant='subtle' colorScheme={'secondary'}
-          onPress={() => navigation.navigate('Settings')}>Կարգավորումներ</Button>
+          onPress={() => navigation.navigate('Settings', {
+            venderId: venderId//'F5C029E0-944D-4171-ADD6-AFBFD56BAAB2'
+          })}>Կարգավորումներ</Button>
       </VStack>
     </Center>
   );

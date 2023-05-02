@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, HStack, Stack, Switch, FormControl, Box, Input, Select, CheckIcon, Radio, Heading, } from "native-base";
-import { TimePickerInput } from "../TimePicker";
+import { TimePickerInput } from "../../TimePicker";
 
 
 const Application_Step1 = () => {

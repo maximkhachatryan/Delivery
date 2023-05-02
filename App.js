@@ -20,10 +20,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomePage from "./components/Home/HomePage";
 import NativeBasePage from "./components/Home/NativeBasePage";
-import Application_Step1 from "./components/Application/Application_Step1";
 import { LoginPage } from "./components/LoginPage"; 
 import { enableScreens } from "react-native-screens";
-import SettingsPage from "./components/Home/SettingsPage";
+import SettingsPage from "./components/Home/Settings/SettingsPage";
+import CreateAddress from "./components/Home/Settings/Actions/CreateAddress";
+import Application_Step1 from "./components/Home/Application/Application_Step1";
 
 enableScreens();
 
@@ -44,7 +45,7 @@ export default function App() {
     <NativeBaseProvider>
 
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home" screenOptions={{
+        <Stack.Navigator initialRouteName="Login" screenOptions={{
           headerShown: false
         }}>
           <Stack.Screen name="Login" component={LoginPage} />
@@ -52,6 +53,7 @@ export default function App() {
           <Stack.Screen name="Home" component={HomePage} />
           <Stack.Screen name="Settings" component={SettingsPage} />
           <Stack.Screen name="ApplicationStep1" component={Application_Step1} />
+          <Stack.Screen name="CreateAddress" component={CreateAddress} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { login } from "../services";
-// import { sha256, sha256Bytes } from 'react-native-sha256';
+import { login } from "../services/index";
 import sha256 from 'crypto-js/sha256';
 
 import { Center, Box, Heading, FormControl, Input, Button, HStack, VStack, Text, Link } from "native-base";
 
 const LoginPage = ({ navigation }) => {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState('maximkhachatryan');
+  const [password, setPassword] = useState('Max.1998');
 
   const signIn = async () => {
     if (username == null || username.trim() === "") {
@@ -22,9 +21,9 @@ const LoginPage = ({ navigation }) => {
     console.log(passwordHash);
 
     try {
-      let succeeded = await login(username, passwordHash);
-      if (succeeded)
-        navigation.navigate('Home');
+      let venderId = await login(username, passwordHash);
+      if (venderId != null)
+        navigation.navigate('Home', { venderId: venderId });
       else {
         setPassword('');
         alert("Սխալ մուտքանուն կամ ծածկագիր");
