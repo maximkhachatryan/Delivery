@@ -25,7 +25,7 @@ const HomePage = ({ route, navigation }) => {
       flex={1}
     >
       <VStack space={5} >
-        <Button onPress={() => navigation.navigate('ApplicationStep1')}>Նոր առաքման հայտ</Button>
+        <Button onPress={() => navigation.navigate('Application')}>Նոր առաքման հայտ</Button>
         <Button onPress={() => navigation.navigate('NativeBase')}>Բոլոր առաքման պատվերները</Button>
         <Button variant='subtle' colorScheme={'secondary'}
           onPress={() => navigation.navigate('Settings', {

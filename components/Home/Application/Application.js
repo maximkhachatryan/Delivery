@@ -3,7 +3,7 @@ import { Text, HStack, Stack, Switch, FormControl, Box, Input, Select, CheckIcon
 import { TimePickerInput } from "../../TimePicker";
 
 
-const Application_Step1 = () => {
+const Application = () => {
     const [pickupAddress, setPickupAddress] = React.useState("1");
     const [paymentBy, setPaymentBy] = React.useState("1");
 
@@ -108,4 +108,4 @@ const Application_Step1 = () => {
     );
 }
 
-export default Application_Step1;
+export default Application;

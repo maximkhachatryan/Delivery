@@ -24,7 +24,7 @@ import { LoginPage } from "./components/LoginPage";
 import { enableScreens } from "react-native-screens";
 import SettingsPage from "./components/Home/Settings/SettingsPage";
 import CreateAddress from "./components/Home/Settings/Actions/CreateAddress";
-import Application_Step1 from "./components/Home/Application/Application_Step1";
+import Application from "./components/Home/Application/Application";
 
 enableScreens();
 
@@ -52,7 +52,7 @@ export default function App() {
             <Stack.Screen name="NativeBase" component={NativeBasePage} />
             <Stack.Screen name="Home" component={HomePage} />
             <Stack.Screen name="Settings" component={SettingsPage} />
-            <Stack.Screen name="ApplicationStep1" component={Application_Step1} />
+            <Stack.Screen name="Application" component={Application} />
             <Stack.Screen name="CreateAddress" component={CreateAddress} />
           </Stack.Navigator>
         </NavigationContainer>
