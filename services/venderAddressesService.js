@@ -27,3 +27,24 @@ export const addVenderAddresses = async (venderId, district, address) => {
         });
 
 }
+
+export const removeVenderAddress = async (venderId, addressId) => {
+    let url = `https://439b-37-252-93-46.ngrok-free.app/api/venderAddresses/${venderId}`
+    return await axios.delete(url, {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: {
+            id: addressId
+        }
+    }
+    )
+        .then(function (response) {
+            return response.status == 200;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return false;
+        });
+
+}
