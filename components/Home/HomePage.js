@@ -25,11 +25,13 @@ const HomePage = ({ route, navigation }) => {
       flex={1}
     >
       <VStack space={5} >
-        <Button onPress={() => navigation.navigate('Application')}>Նոր առաքման հայտ</Button>
+        <Button onPress={() => navigation.navigate('Application', {
+          venderId: venderId
+        })}>Նոր առաքման հայտ</Button>
         <Button onPress={() => navigation.navigate('NativeBase')}>Բոլոր առաքման պատվերները</Button>
         <Button variant='subtle' colorScheme={'secondary'}
           onPress={() => navigation.navigate('Settings', {
-            venderId: venderId//'F5C029E0-944D-4171-ADD6-AFBFD56BAAB2'
+            venderId: venderId
           })}>Կարգավորումներ</Button>
       </VStack>
     </Center>

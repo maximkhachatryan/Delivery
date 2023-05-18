@@ -29,7 +29,7 @@ export default SettingsPage = ({ route, navigation }) => {
         const unsubscribe = navigation.addListener('focus', async () => {
             let fetchedAddresses = await getVenderAddresses(venderId);
             setAddresses(fetchedAddresses);
-        })
+        });
 
         // // React advises to declare the async function directly inside useEffect
         // async function initAddresses() {
