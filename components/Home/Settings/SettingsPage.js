@@ -1,6 +1,6 @@
 import React from "react";
 import { PixelRatio } from "react-native";
-import { getVenderAddresses, removeVenderAddress } from "../../../services/venderAddressesService";
+import { getVenderAddresses, removeVenderAddress } from "../../../api/services/venderAddressesService";
 import {
     FlatList,
     Text,

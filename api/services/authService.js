@@ -1,7 +1,8 @@
-import axios from "axios"
+import api from "../utils/axiosUtil";
+
 
 export const login = async (userName, passwordHash) => {
-  return await axios.post("https://439b-37-252-93-46.ngrok-free.app/api/account/login", {
+  return await api.post("/account/login", {
     UserName: userName, //"maximkhachatryan",
     PasswordHash: passwordHash //"9663353191d4fb084e2f1bae7ac232b891482f0087d34ea9a58bfdbbdf6e0b4e"
   })

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { login } from "../services/index";
+import { login } from "../api/services/authService";
 import sha256 from 'crypto-js/sha256';
 
 import { Center, Box, Heading, FormControl, Input, Button, HStack, VStack, Text, Link } from "native-base";

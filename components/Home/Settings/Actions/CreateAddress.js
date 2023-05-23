@@ -1,5 +1,5 @@
 import React from "react";
-import { addVenderAddresses } from "../../../../services/venderAddressesService";
+import { addVenderAddresses } from "../../../../api/services/venderAddressesService";
 import { Box, Button, CheckIcon, FormControl, Heading, Input, Select, Stack } from "native-base";
 
 export default CreateAddress = ({ route, navigation }) => {

@@ -11,7 +11,7 @@ const CalendarInput = ({ onDateChange, minDate, placeholder }) => {
         const selectedDate = day.dateString;
         setDate(selectedDate);
         setShowCalendar(false);
-        onDateChange(selectedDate); // calling the callback function with the selected date
+        onDateChange(new Date(day.dateString)); // calling the callback function with the selected date
     };
 
     return (

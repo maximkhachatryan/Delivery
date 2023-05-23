@@ -1,24 +1,26 @@
 import React from "react";
-import { Button, Stack, FormControl, Box, Input, Select, Radio, Heading, Checkbox, Divider, ScrollView, Container, TextArea } from "native-base";
+import { Button, List, Stack, FormControl, Box, Input, Select, Radio, Heading, Checkbox, Divider, ScrollView, Container, TextArea } from "native-base";
 import { TimePickerInput } from "../../TimePicker";
-import { getVenderAddresses } from "../../../services/venderAddressesService";
+import { getVenderAddresses } from "../../../api/services/venderAddressesService";
 import CalendarInput from "../../CalendarInput";
+import { addOrder } from "../../../api/services/orderService";
 
 
 const Application = ({ route, navigation }) => {
     const { venderId } = route.params;
 
-    const [productDescription, setProductDescription] = React.useState("");
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
-    const [pickupAddress, setPickupAddress] = React.useState("1");
-    const [paymentBy, setPaymentBy] = React.useState("1");
-    const [selectedAddress, setSelectedAddress] = React.useState();
-    
+    const [productDescription, setProductDescription] = React.useState(null);
+    const [pickUpAddress, setPickUpAddress] = React.useState(null);
+    const [pickUpDate, setPickUpDate] = React.useState(null);
+    const [isPaymentByClient, setIsPaymentByClient] = React.useState(false);
+
+
+    const [shouldProductPriceBePaidByClient, setShouldProductPriceBePaidByClient] = React.useState(false);
+    const [productPrice, setProductPrice] = React.useState(NaN);
+    const [notes, setNotes] = React.useState(null);
+
+
     const [addresses, setAddresses] = React.useState([]);
-    const [customerShouldPayForProduct, setCustomerShouldPayForProduct] = React.useState(false);
-
-
-
 
     React.useEffect(() => {
         //navigation.addListener('focus', async () => {
@@ -26,7 +28,7 @@ const Application = ({ route, navigation }) => {
             let fetchedAddresses = await getVenderAddresses(venderId);
             setAddresses(fetchedAddresses);
             if (fetchedAddresses != null && fetchedAddresses.length != 0) {
-                setSelectedAddress(fetchedAddresses[0].id);
+                setPickUpAddress(fetchedAddresses[0].id);
             }
         }
         fetchData();
@@ -71,23 +73,45 @@ const Application = ({ route, navigation }) => {
     });
 
     const handleAddressChange = (value) => {
-        setSelectedAddress(value);
+        setPickUpAddress(value);
     };
 
-    const handleCustomerShouldPayForProduct = (newValue) => {
-        setCustomerShouldPayForProduct(newValue);
+    const handleShouldProductPriceBePaidByClient = (newValue) => {
+        setShouldProductPriceBePaidByClient(newValue);
     };
 
 
 
     const minDate = new Date().toISOString().split('T')[0]; // set minimum date as today's date
-    const handleDateChange = (selectedDate) => {
-        console.log(`Selected date: ${selectedDate}`);
+    const handleDateChange = (pickUpDate) => {
+        console.log(typeof (pickUpDate));
+        setPickUpDate(pickUpDate);
     };
 
-    const onSubmit = () => {
+    const handlePaymentByOptionChange = () => {
+        setIsPaymentByClient(!isPaymentByClient);
+    };
 
-        navigation.goBack();
+    const onSubmit = async () => {
+        if (productDescription != null && productDescription.trim() !== ''
+            && pickUpAddress != null
+            && pickUpDate != null
+            && (!shouldProductPriceBePaidByClient || (productPrice != null && productPrice > 0))) {
+
+            var request = {
+                productDescription: productDescription,
+                venderAddressId: pickUpAddress,
+                pickUpDate: pickUpDate,
+                isDeliveryPaymentByClient: isPaymentByClient,
+                shouldProductPriceBePaid: shouldProductPriceBePaidByClient,
+                productPrice: productPrice,
+                otherNotes: notes
+            };
+            let success = await addOrder(request);
+            if (success) {
+                navigation.goBack();
+            }
+        }
     }
 
 
@@ -98,7 +122,9 @@ const Application = ({ route, navigation }) => {
                 <Box w="90%">
                     <Stack mx="0">
                         <FormControl.Label>Ապրանքի նկարագիր</FormControl.Label>
-                        <Input type="Text" defaultValue="" placeholder="" />
+                        <Input type="Text" defaultValue="" placeholder=""
+                            value={productDescription}
+                            onChangeText={text => setProductDescription(text)} />
                     </Stack>
                     <Stack mx="0">
                         <FormControl.Label>Ապրանքի գտնվելու վայրը</FormControl.Label>
@@ -107,7 +133,7 @@ const Application = ({ route, navigation }) => {
                             placeholder=""
                             mt="1"
                             isRequired
-                            selectedValue={selectedAddress}
+                            selectedValue={pickUpAddress}
                             onValueChange={handleAddressChange}
                         >
                             {addressItems}
@@ -120,8 +146,22 @@ const Application = ({ route, navigation }) => {
                     <Stack mx="0">
                         <FormControl.Label>Առաքման գումարը կվճարվի</FormControl.Label>
                         <Radio.Group
+                            value={isPaymentByClient}
+                            onChange={handlePaymentByOptionChange}>
+                            <Radio
+                                value={false}
+                                my={1}>
+                                Իմ կողմից
+                            </Radio>
+                            <Radio
+                                value={true}
+                                my={1}>
+                                Հաճախորդի կողմից
+                            </Radio>
+                        </Radio.Group>
+                        {/* <Radio.Group
                             accessibilityLabel="payment by"
-                            value={paymentBy}
+                            value={isPaymentByClient}
                             onChange={nextValue => {
                                 setPaymentBy(nextValue);
                             }}>
@@ -131,24 +171,26 @@ const Application = ({ route, navigation }) => {
                             <Radio value="2" my={1}>
                                 Հաճախորդի կողմից
                             </Radio>
-                        </Radio.Group>
+                        </Radio.Group> */}
                     </Stack>
                     <Divider my={2} />
                     <Stack mx="0">
                         <Checkbox
-                            value={customerShouldPayForProduct}
-                            onChange={handleCustomerShouldPayForProduct}
+                            value={shouldProductPriceBePaidByClient}
+                            onChange={handleShouldProductPriceBePaidByClient}
                         >
                             Ապրանքի արժեքը պահանջել հաճախորդից
                         </Checkbox>
                     </Stack>
 
-                    {customerShouldPayForProduct && (
+                    {shouldProductPriceBePaidByClient && (
                         <Box>
                             <Divider my={2} />
                             <Stack mx="0">
                                 <FormControl.Label>Ապրանքի արժեքը (դրամ)</FormControl.Label>
-                                <Input type="Text" defaultValue="" placeholder="" inputMode="numeric" />
+                                <Input type="Text" defaultValue="" placeholder="" inputMode="numeric"
+                                    value={productPrice}
+                                    onChangeText={(text) => setProductPrice(parseInt(text, 10))} />
                             </Stack>
                             {/* <Stack mx="0">
                             <FormControl.Label>Ստանալ ապրանքի գումարը առաքիչից նախապես</FormControl.Label>
@@ -158,7 +200,9 @@ const Application = ({ route, navigation }) => {
                     )}
                     <Stack mx="0">
                         <FormControl.Label>Այլ նշումներ</FormControl.Label>
-                        <TextArea />
+                        <TextArea
+                            value={notes}
+                            onChangeText={text => setNotes(text)} />
                     </Stack>
                     <Button
                         my={5}

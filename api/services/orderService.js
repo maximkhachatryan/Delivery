@@ -1,0 +1,13 @@
+import api from "../utils/axiosUtil";
+
+export const addOrder = async (order) => {
+    return await api.post('/order', order)
+        .then(function (response) {
+            return response.status == 200;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return false;
+        });
+
+}

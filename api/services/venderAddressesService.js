@@ -1,8 +1,7 @@
-import axios from "axios"
+import api from "../utils/axiosUtil";
 
 export const getVenderAddresses = async (venderId) => {
-    let url = `https://439b-37-252-93-46.ngrok-free.app/api/venderAddresses/${venderId}`
-    return await axios.get(url)
+    return await api.get(`/venderAddresses/${venderId}`)
         .then(function (response) {
             return response.data;
         })
@@ -13,8 +12,7 @@ export const getVenderAddresses = async (venderId) => {
 }
 
 export const addVenderAddresses = async (venderId, district, address) => {
-    let url = `https://439b-37-252-93-46.ngrok-free.app/api/venderAddresses/${venderId}`
-    return await axios.post(url, {
+    return await api.post(`/venderAddresses/${venderId}`, {
         district: district,
         addressInfo: address
     })
@@ -29,8 +27,7 @@ export const addVenderAddresses = async (venderId, district, address) => {
 }
 
 export const removeVenderAddress = async (venderId, addressId) => {
-    let url = `https://439b-37-252-93-46.ngrok-free.app/api/venderAddresses/${venderId}`
-    return await axios.delete(url, {
+    return await api.delete(`/venderAddresses/${venderId}`, {
         headers: {
             'Content-Type': 'application/json'
         },
