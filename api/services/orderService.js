@@ -11,3 +11,14 @@ export const addOrder = async (order) => {
         });
 
 }
+
+export const getAllOrders = async (venderId) => {
+    return await api.get(`/order/${venderId}`)
+        .then(function (response) {
+            return response.data;
+        })
+        .catch(function (error) {
+            throw (error);
+        });
+
+}

@@ -28,7 +28,9 @@ const HomePage = ({ route, navigation }) => {
         <Button onPress={() => navigation.navigate('Application', {
           venderId: venderId
         })}>Նոր առաքման հայտ</Button>
-        <Button onPress={() => navigation.navigate('NativeBase')}>Բոլոր առաքման պատվերները</Button>
+        <Button onPress={() => navigation.navigate('Orders', {
+          venderId: venderId
+        })}>Բոլոր առաքման պատվերները</Button>
         <Button variant='subtle' colorScheme={'secondary'}
           onPress={() => navigation.navigate('Settings', {
             venderId: venderId
