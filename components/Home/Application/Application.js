@@ -4,6 +4,7 @@ import { TimePickerInput } from "../../TimePicker";
 import { getVenderAddresses } from "../../../api/services/venderAddressesService";
 import CalendarInput from "../../CalendarInput";
 import { addOrder } from "../../../api/services/orderService";
+import { getDistrictName } from "../../../helpers/Helper";
 
 
 const Application = ({ route, navigation }) => {
@@ -35,36 +36,6 @@ const Application = ({ route, navigation }) => {
         //});
     }, []);
 
-    const getDistrictName = districtCode => {
-        switch (districtCode) {
-            case 1:
-                return 'Կենտրոն';
-            case 2:
-                return 'Արաբկիր';
-            case 3:
-                return 'Քանաքեռ Զեյթուն';
-            case 4:
-                return 'Ավան';
-            case 5:
-                return 'Նոր Նորք';
-            case 6:
-                return 'Նորք Մարաշ';
-            case 7:
-                return 'Էրեբունի';
-            case 8:
-                return 'Շենգավիթ';
-            case 9:
-                return 'Նուբարաշեն';
-            case 10:
-                return 'Մալաթիա-Սեբաստիա';
-            case 11:
-                return 'Աջափնյակ';
-            case 12:
-                return 'Դավթաշեն';
-            default:
-                return '...'
-        }
-    }
 
     const addressItems = addresses.map((item, index) => {
         return (
@@ -151,12 +122,12 @@ const Application = ({ route, navigation }) => {
                             <Radio
                                 value={false}
                                 my={1}>
-                                Իմ կողմից
+                                Ուղարկողի կողմից
                             </Radio>
                             <Radio
                                 value={true}
                                 my={1}>
-                                Հաճախորդի կողմից
+                                Ստացողի կողմից
                             </Radio>
                         </Radio.Group>
                         {/* <Radio.Group
@@ -179,7 +150,7 @@ const Application = ({ route, navigation }) => {
                             value={shouldProductPriceBePaidByClient}
                             onChange={handleShouldProductPriceBePaidByClient}
                         >
-                            Ապրանքի արժեքը պահանջել հաճախորդից
+                            Ապրանքի արժեքը պահանջել ստացողից
                         </Checkbox>
                     </Stack>
 
