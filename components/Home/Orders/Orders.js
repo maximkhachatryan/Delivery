@@ -4,7 +4,7 @@ import { getAllOrders } from "../../../api/services/orderService";
 import { getDistrictName } from "../../../helpers/Helper"
 
 const Orders = ({ route, navigation }) => {
-    const { venderId } = route.params;
+    const { vendorId } = route.params;
 
     const [orders, setOrders] = React.useState();
 
@@ -33,13 +33,13 @@ const Orders = ({ route, navigation }) => {
         }
     }
 
-    const getVenderAddressString = (address) => {
+    const getVendorAddressString = (address) => {
         return "ք․ Երևան, " + getDistrictName(address.district) + ", " + address.addressInfo
     }
 
     React.useEffect(() => {
         const unsubscribe = navigation.addListener('focus', async () => {
-            let fetchedOrders = await getAllOrders(venderId);
+            let fetchedOrders = await getAllOrders(vendorId);
             setOrders(fetchedOrders);
             console.log(fetchedOrders);
         });
@@ -76,7 +76,7 @@ const Orders = ({ route, navigation }) => {
                         </HStack>
                         <HStack>
                             <Text>Վերցնելու վայր։ </Text>
-                            <Text bold>{getVenderAddressString(item.venderAddress)}</Text>
+                            <Text bold>{getVendorAddressString(item.vendorAddress)}</Text>
                         </HStack>
                         {item.productPrice != null && (
                             <HStack>
@@ -99,7 +99,7 @@ const Orders = ({ route, navigation }) => {
                         {/* <Text>{item.pickUpDate}</Text> */}
 
                         {/* <Text>{item.shouldProductPriceBePaid}</Text> */}
-                        {/* <Text>{item.venderAddressId}</Text> */}
+                        {/* <Text>{item.vendorAddressId}</Text> */}
                     </VStack>
                 </Box>
             </Pressable>

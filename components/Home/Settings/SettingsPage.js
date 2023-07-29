@@ -1,6 +1,6 @@
 import React from "react";
 import { PixelRatio } from "react-native";
-import { getVenderAddresses, removeVenderAddress } from "../../../api/services/venderAddressesService";
+import { getVendorAddresses, removeVendorAddress } from "../../../api/services/vendorAddressesService";
 import {
     FlatList,
     Text,
@@ -21,20 +21,20 @@ import {
 
 
 export default SettingsPage = ({ route, navigation }) => {
-    const { venderId } = route.params;
+    const { vendorId } = route.params;
 
     const [addresses, setAddresses] = React.useState();
 
     React.useEffect(() => {
         const unsubscribe = navigation.addListener('focus', async () => {
-            let fetchedAddresses = await getVenderAddresses(venderId);
+            let fetchedAddresses = await getVendorAddresses(vendorId);
             setAddresses(fetchedAddresses);
         });
 
         // // React advises to declare the async function directly inside useEffect
         // async function initAddresses() {
 
-        //     let fetchedAddresses = await getVenderAddresses(venderId);
+        //     let fetchedAddresses = await getVendorAddresses(vendorId);
         //     setAddresses(fetchedAddresses);
         // };
 
@@ -77,9 +77,9 @@ export default SettingsPage = ({ route, navigation }) => {
     }
 
     const removeAddress = async (addressId) => {
-        let removed = await removeVenderAddress(venderId, addressId)
+        let removed = await removeVendorAddress(vendorId, addressId)
         if (removed) {
-            let fetchedAddresses = await getVenderAddresses(venderId);
+            let fetchedAddresses = await getVendorAddresses(vendorId);
             setAddresses(fetchedAddresses);
         }
     }
@@ -143,7 +143,7 @@ export default SettingsPage = ({ route, navigation }) => {
                     renderItem={renderItem} />
 
                 <Button height={50} onPress={() => navigation.navigate('CreateAddress', {
-                    venderId: venderId//'F5C029E0-944D-4171-ADD6-AFBFD56BAAB2'
+                    vendorId: vendorId//'F5C029E0-944D-4171-ADD6-AFBFD56BAAB2'
                 })}>Նոր հասցե</Button>
             </Flex>
         </Container>

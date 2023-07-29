@@ -1,16 +1,16 @@
 import React from "react";
-import { addVenderAddresses } from "../../../../api/services/venderAddressesService";
+import { addVendorAddresses } from "../../../../api/services/vendorAddressesService";
 import { Box, Button, CheckIcon, FormControl, Heading, Input, Select, Stack } from "native-base";
 
 export default CreateAddress = ({ route, navigation }) => {
-    const { venderId } = route.params;
+    const { vendorId } = route.params;
 
     const [district, setDistrict] = React.useState();
     const [address, setAddress] = React.useState();
 
     const createAddress = async () => {
         if (district != null && address != null) {
-            if (await addVenderAddresses(venderId, district, address)) {
+            if (await addVendorAddresses(vendorId, district, address)) {
                 navigation.goBack();
             }
         }

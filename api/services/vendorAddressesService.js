@@ -1,7 +1,7 @@
 import api from "../utils/axiosUtil";
 
-export const getVenderAddresses = async (venderId) => {
-    return await api.get(`/venderAddresses/${venderId}`)
+export const getVendorAddresses = async (vendorId) => {
+    return await api.get(`/vendorAddresses/${vendorId}`)
         .then(function (response) {
             return response.data;
         })
@@ -11,8 +11,8 @@ export const getVenderAddresses = async (venderId) => {
 
 }
 
-export const addVenderAddresses = async (venderId, district, address) => {
-    return await api.post(`/venderAddresses/${venderId}`, {
+export const addVendorAddresses = async (vendorId, district, address) => {
+    return await api.post(`/vendorAddresses/${vendorId}`, {
         district: district,
         addressInfo: address
     })
@@ -26,8 +26,8 @@ export const addVenderAddresses = async (venderId, district, address) => {
 
 }
 
-export const removeVenderAddress = async (venderId, addressId) => {
-    return await api.delete(`/venderAddresses/${venderId}`, {
+export const removeVendorAddress = async (vendorId, addressId) => {
+    return await api.delete(`/vendorAddresses/${vendorId}`, {
         headers: {
             'Content-Type': 'application/json'
         },

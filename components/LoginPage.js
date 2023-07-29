@@ -21,9 +21,9 @@ const LoginPage = ({ navigation }) => {
     console.log(passwordHash);
 
     try {
-      let venderId = await login(username, passwordHash);
-      if (venderId != null)
-        navigation.navigate('Home', { venderId: venderId });
+      let vendorId = await login(username, passwordHash);
+      if (vendorId != null)
+        navigation.navigate('Home', { vendorId: vendorId });
       else {
         setPassword('');
         alert("Սխալ մուտքանուն կամ ծածկագիր");

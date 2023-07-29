@@ -15,7 +15,7 @@ import {
 } from "native-base";
 
 const HomePage = ({ route, navigation }) => {
-  const { venderId } = route.params;
+  const { vendorId } = route.params;
 
   return (
     <Center
@@ -26,14 +26,14 @@ const HomePage = ({ route, navigation }) => {
     >
       <VStack space={5} >
         <Button onPress={() => navigation.navigate('Application', {
-          venderId: venderId
+          vendorId: vendorId
         })}>Նոր առաքման հայտ</Button>
         <Button onPress={() => navigation.navigate('Orders', {
-          venderId: venderId
+          vendorId: vendorId
         })}>Բոլոր առաքման պատվերները</Button>
         <Button variant='subtle' colorScheme={'secondary'}
           onPress={() => navigation.navigate('Settings', {
-            venderId: venderId
+            vendorId: vendorId
           })}>Կարգավորումներ</Button>
       </VStack>
     </Center>

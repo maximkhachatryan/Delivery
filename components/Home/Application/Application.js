@@ -1,14 +1,14 @@
 import React from "react";
 import { Button, List, Stack, FormControl, Box, Input, Select, Radio, Heading, Checkbox, Divider, ScrollView, Container, TextArea } from "native-base";
 import { TimePickerInput } from "../../TimePicker";
-import { getVenderAddresses } from "../../../api/services/venderAddressesService";
+import { getVendorAddresses } from "../../../api/services/vendorAddressesService";
 import CalendarInput from "../../CalendarInput";
 import { addOrder } from "../../../api/services/orderService";
 import { getDistrictName } from "../../../helpers/Helper";
 
 
 const Application = ({ route, navigation }) => {
-    const { venderId } = route.params;
+    const { vendorId } = route.params;
 
     const [productDescription, setProductDescription] = React.useState(null);
     const [pickUpAddress, setPickUpAddress] = React.useState(null);
@@ -26,7 +26,7 @@ const Application = ({ route, navigation }) => {
     React.useEffect(() => {
         //navigation.addListener('focus', async () => {
         async function fetchData() {
-            let fetchedAddresses = await getVenderAddresses(venderId);
+            let fetchedAddresses = await getVendorAddresses(vendorId);
             setAddresses(fetchedAddresses);
             if (fetchedAddresses != null && fetchedAddresses.length != 0) {
                 setPickUpAddress(fetchedAddresses[0].id);
@@ -71,7 +71,7 @@ const Application = ({ route, navigation }) => {
 
             var request = {
                 productDescription: productDescription,
-                venderAddressId: pickUpAddress,
+                vendorAddressId: pickUpAddress,
                 pickUpDate: pickUpDate,
                 isDeliveryPaymentByClient: isPaymentByClient,
                 shouldProductPriceBePaid: shouldProductPriceBePaidByClient,

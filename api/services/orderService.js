@@ -12,8 +12,8 @@ export const addOrder = async (order) => {
 
 }
 
-export const getAllOrders = async (venderId) => {
-    return await api.get(`/order/${venderId}`)
+export const getAllOrders = async (vendorId) => {
+    return await api.get(`/order/${vendorId}`)
         .then(function (response) {
             return response.data;
         })
